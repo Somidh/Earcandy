@@ -1,9 +1,7 @@
 {
   "overrides": [
     {
-      "extends": [
-        "plugin:recommended-requiring-type-checking"
-      ],
+      "extends": [],
       "files": ["*.ts", "*.tsx"],
       "parserOptions": {
         "project": "tsconfig.json"

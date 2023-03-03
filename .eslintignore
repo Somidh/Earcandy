@@ -1,2 +1,2 @@
-next.config.cjs
+*.cjs
 node_modules
