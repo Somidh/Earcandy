@@ -26,8 +26,8 @@ const Home: FC = () => {
     {
       name: "Cooking books",
       count: "80 book",
-    },
-  ];
+    } ,
+  ]; 
 
   return (
     <div className="h-screen px-40">
