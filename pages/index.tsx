@@ -8,32 +8,46 @@ import smallstar from "/public/assets/images/small-star.png";
 import box from "/public/assets/images/box.png";
 import { HiChevronDown } from "react-icons/hi";
 import Image from "next/image";
+import Sidebar from "@/components/Sidebar";
+import { noto_serif } from "@/public/assets/fonts/font";
+import cooking_img from "public/assets/images/cooking_book_img.png";
+import headphone_img from "public/assets/images/headphone_img.png";
+import reading_img from "public/assets/images/reading_img.png";
+import unicorn_img from "public/assets/images/unicorn_img.png";
 
 const Home: FC = () => {
   const booksCategories = [
     {
       name: "Audio books",
       count: "320 book",
+      img: headphone_img,
+      bgColor: "#8A84E2"
     },
     {
       name: "Children books",
       count: "300 book",
+      img: reading_img,
+      bgColor: "#f0b67f"
     },
     {
       name: "Fantasy books ",
       count: "450 book",
+      img: unicorn_img,
+      bgColor: "#87bba2"
     },
     {
       name: "Cooking books",
       count: "80 book",
-    } ,
-  ]; 
+      img: cooking_img,
+      bgColor: "#acdde7"
+    },
+  ];
 
   return (
     <div className="h-screen px-40">
       <Navbar />
 
-      <div className="w-full text-center text-[65px] font-bold relative mb-20">
+      <div className="w-full text-center  relative mb-20">
         <Image
           src={arrow}
           alt="arrow_img"
@@ -47,10 +61,10 @@ const Home: FC = () => {
         <Image
           src={star}
           alt="star_img"
-          className="absolute bottom-0 left-[7em] w-8"
+          className="absolute bottom-0 left-[26em] w-8"
         />
         <Image src={star} alt="star_img" className="absolute top-0 right-80" />
-        <h1 className="">
+        <h1 className={`text-[65px] font-bold ${noto_serif.className}`}>
           Your favorite <br /> storybook
         </h1>
       </div>
@@ -68,15 +82,21 @@ const Home: FC = () => {
         />
         <div className="flex flex-col items-start gap-7">
           <div className="flex items-center gap-3 cursor-pointer">
-            <h1 className="text-3xl font-bold">Genre</h1>
+            <h1 className={`text-3xl font-bold ${noto_serif.className}`}>
+              Genre
+            </h1>
             <HiChevronDown className="text-3xl" />
           </div>
           <div className="w-80 h-96 flex flex-col gap-5">
-            {booksCategories.map((category, idx) => (
-              <div>
-                {/* <Sidebar name={category.name} count={category.count} /> */}
-              </div>
-            ))}
+            {booksCategories.map((category, idx) => {
+              const { name, count, img, bgColor } = category;
+              console.log(bgColor)
+              return (
+                <div>
+                  <Sidebar name={name} count={count} img={img.src} bgColor={bgColor} />
+                </div>
+              );
+            })}
           </div>
         </div>
 
@@ -86,15 +106,21 @@ const Home: FC = () => {
 
         <div className="flex flex-col items-start gap-7">
           <div className="flex items-center gap-3 cursor-pointer">
-            <h1 className="text-3xl font-bold">Trending</h1>
+            <h1 className={`text-3xl font-bold ${noto_serif.className}`}>
+              Trending
+            </h1>
             <HiChevronDown className="text-3xl" />
           </div>
           <div className="w-80 h-96 flex flex-col gap-5">
-            {booksCategories.map((category, idx) => (
-              <div>
-                {/* <Sidebar name={category.name} count={category.count} /> */}
-              </div>
-            ))}
+            {booksCategories.map((category, idx) => {
+              const { name, count, img, bgColor } = category;
+
+              return (
+                <div>
+                  <Sidebar name={name} count={count} img={img.src} bgColor={bgColor} />
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

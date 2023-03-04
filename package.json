@@ -6,6 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@next/font": "^13.2.3",
     "@supabase/supabase-js": "^2.10.0",
     "next": "latest",
     "react": "18.2.0",
