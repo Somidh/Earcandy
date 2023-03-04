@@ -7,20 +7,23 @@ import { RxCross2 } from "react-icons/rx";
 
 type Props = {
   userProfile: any;
+  userById: any;
 };
 
-const UserProfile = ({ userProfile }: Props) => {
+const UserProfile = ({ userProfile, userById }: Props) => {
   const [showEditForm, setShowEditForm] = useState(false);
   const [userId, setUserId] = useState<any>();
   const [isOwnProfile, setIsOwnProfile] = useState(false);
   const [userBio, setUserBio] = useState<string>(
-    userProfile.bio ? userProfile.bio : "Edit Your Bio"
+    userById && userById[0].bio ? userById[0].bio : "Edit Your Bio"
   );
+
+  console.log(userById);
 
   const editProfile = async (e: any) => {
     e.preventDefault();
 
-    const data = await editUser(userProfile, userBio);
+    await editUser(userProfile, userBio);
 
     setShowEditForm(false);
   };
@@ -37,7 +40,7 @@ const UserProfile = ({ userProfile }: Props) => {
   return (
     <div>
       <div className="flex items-center gap-6 font-semibold text-[#303933]">
-        <p>Crazy girl</p>
+        <p>{userById && userById[0].full_name}</p>
         {!isOwnProfile && (
           <button className="rounded-full bg-[#303933] px-2 py-[.1rem] text-sm text-white">
             Follow
