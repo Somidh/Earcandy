@@ -1,7 +1,7 @@
 import { TUser } from "@/types/TUser";
 import supabase from "../supabase";
 
-export default async function editUser(user: IUser, userBio: string) {
+export default async function editUser(user: TUser, userBio: string) {
   if (!user) return;
 
   const { data, error } = await supabase
