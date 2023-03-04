@@ -56,6 +56,7 @@ const Navbar: FC = () => {
         ))}
       </ul>
 
+
       {userProfile.id ? (
         <Link href={`/user/${userProfile.id}}`}>
           <img
