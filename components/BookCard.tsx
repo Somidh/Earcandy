@@ -1,7 +1,12 @@
 import Link from "next/link";
+import type { FC } from "react";
 
-type Props = {};
-function BookCard({}: Props) {
+type Props = {
+  post: unknown;
+};
+const BookCard: FC<Props> = ({ post }) => {
+  console.log(post, "likedPost");
+
   return (
     <div className="w-[13rem] overflow-hidden rounded-lg bg-[#C6DBCE]">
       {/* replaced with image */}
@@ -19,6 +24,6 @@ function BookCard({}: Props) {
       </div>
     </div>
   );
-}
+};
 
 export default BookCard;

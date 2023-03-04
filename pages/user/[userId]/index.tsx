@@ -81,7 +81,6 @@ function UserPage({}: Props) {
     else setFollowed((prev) => !prev);
   };
 
-
   return (
     // remove margin top later
     <main className="mx-auto mt-[3rem] max-w-6xl">
@@ -121,7 +120,7 @@ function UserPage({}: Props) {
       <div className="my-5 flex justify-between font-medium">
         <div className="flex gap-4 text-[#303933]">
           <Link href="/">5 posts</Link>
-          <Link href="/">8 Liked post</Link>
+          <Link href={`/user/${userProfile.id}/likes`}>8 Liked post</Link>
         </div>
         <button
           className="rounded-full bg-[#303933] px-4 py-1 text-white"
