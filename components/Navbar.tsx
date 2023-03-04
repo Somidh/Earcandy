@@ -1,8 +1,14 @@
 import Link from "next/link";
-import { FC } from "react";
+import { useRouter } from "next/router";
+import type { FC } from "react";
 import { playfair_display, noto_serif } from "@/public/assets/fonts/font";
 
 const Navbar: FC = () => {
+  const router = useRouter();
+  const handleLogin = () => {
+    router.push("/api/auth/login");
+  };
+
   const navList = [
     {
       url: "/",
@@ -43,10 +49,11 @@ const Navbar: FC = () => {
         ))}
       </ul>
     
-
-      <Link href={'/login'} className={`text-[18px] text-white bg-btn rounded-full py-[11px] px-16 font-bold ${noto_serif.className}`}>
-        Login
-      </Link>
+      <button 
+         onClick={handleLogin}
+         className={`text-[18px] text-white bg-btn rounded-full py-[11px] px-16 font-bold ${noto_serif.className}`}>
+         login
+      </button>
     </div>
   );
 };

@@ -16,6 +16,7 @@
     "prettier": "prettier --write ."
   },
   "dependencies": {
+    "@auth0/nextjs-auth0": "^2.2.2",
     "@headlessui/react": "^1.7.12",
     "@next/font": "^13.1.6",
     "@supabase/realtime-js": "^2.6.0",
@@ -30,6 +31,7 @@
     "react-dom": "18.2.0",
     "react-icons": "^4.8.0",
     "typescript": "4.9.5",
+    "uuid": "^9.0.0",
     "zustand": "^4.3.3"
   },
   "devDependencies": {
@@ -37,6 +39,7 @@
     "@commitlint/config-conventional": "^17.4.4",
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/typography": "^0.5.9",
+    "@types/uuid": "^9.0.1",
     "@typescript-eslint/eslint-plugin": "^5.54.0",
     "@typescript-eslint/parser": "^5.54.0",
     "autoprefixer": "^10.4.13",
