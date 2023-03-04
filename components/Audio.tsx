@@ -14,7 +14,6 @@ const Audio: FC<AudioProps> = ({ url, onUpload }) => {
 
   useEffect(() => {
     if (url) downloadAudio(url);
-    console.log(url, "url");
   }, [url]);
 
   async function downloadAudio(path: any) {

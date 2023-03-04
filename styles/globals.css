@@ -1,3 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  border-style: none;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .title {
+    @apply font-noto text-4xl font-bold;
+  }
+}
+
+@layer components {
+  .rounded-card {
+    @apply w-full rounded-xl p-4;
+  }
+  .rounded-card-accent {
+    @apply rounded-card bg-accent;
+  }
+}

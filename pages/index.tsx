@@ -1,19 +1,19 @@
-import { FC } from "react";
+import type { FC } from "react";
 import Navbar from "../components/Navbar";
 // import Sidebar from "./components/Sidebar";
-import arrow from "/public/assets/images/arrow.png";
-import circle from "/public/assets/images/circle.png";
-import star from "public/assets/images/star.png";
-import smallstar from "/public/assets/images/small-star.png";
-import box from "/public/assets/images/box.png";
-import { HiChevronDown } from "react-icons/hi";
-import Image from "next/image";
 import Sidebar from "@/components/Sidebar";
 import { noto_serif } from "@/public/assets/fonts/font";
+import Image from "next/image";
 import cooking_img from "public/assets/images/cooking_book_img.png";
 import headphone_img from "public/assets/images/headphone_img.png";
 import reading_img from "public/assets/images/reading_img.png";
+import star from "public/assets/images/star.png";
 import unicorn_img from "public/assets/images/unicorn_img.png";
+import { HiChevronDown } from "react-icons/hi";
+import arrow from "/public/assets/images/arrow.png";
+import box from "/public/assets/images/box.png";
+import circle from "/public/assets/images/circle.png";
+import smallstar from "/public/assets/images/small-star.png";
 
 const Home: FC = () => {
   const booksCategories = [
@@ -119,13 +119,13 @@ const Home: FC = () => {
               const { name, count, img, bgColor } = category;
 
               return (
-                  <Sidebar
-                    key={idx}
-                    name={name}
-                    count={count}
-                    img={img.src}
-                    bgColor={bgColor}
-                  />
+                <Sidebar
+                  key={idx}
+                  name={name}
+                  count={count}
+                  img={img.src}
+                  bgColor={bgColor}
+                />
               );
             })}
           </div>

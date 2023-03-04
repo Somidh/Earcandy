@@ -1,7 +1,7 @@
-import { IUser } from "@/types/TUser";
+import type { TUser } from "@/types/TUser";
 import { create } from "zustand";
 
-type User = IUser;
+type User = TUser;
 
 type StoreValues = {
   userId: string;
@@ -20,7 +20,7 @@ type StoreValues = {
     full_name,
     user_image,
     bio,
-  }: IUser) => void;
+  }: TUser) => void;
 };
 
 const useStore = create<StoreValues>((set, get) => ({

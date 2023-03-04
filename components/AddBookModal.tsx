@@ -1,4 +1,5 @@
 import supabase from "@/server/supabase";
+import useStore from "@/store/store";
 import { Dialog } from "@headlessui/react";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -24,22 +25,14 @@ function AddBookModal({ isOpen, setIsOpen }: Props) {
       [e.target.name]: e.target.value,
     });
   };
-  // const { userProfile, userId } = useStore((state: any) => ({
-  //   userProfile: state.userProfile,
-  //   userId: state.userId,
-  // }));
+  const { userProfile } = useStore((state: any) => {
+    return {
+      userProfile: state.userProfile,
+    };
+  });
 
   const createPost = async (e: any) => {
     e.preventDefault();
-
-    console.log("myyaiejl", {
-      title: formData.title,
-      genre: formData.genre,
-      part: formData.part,
-      description: formData.description,
-      // posted_by: userId,
-      audio: audioUrl,
-    });
 
     const { data, error } = await supabase.from("posts").insert([
       {
@@ -47,14 +40,13 @@ function AddBookModal({ isOpen, setIsOpen }: Props) {
         genre: formData.genre,
         part: formData.part,
         description: formData.description,
-        // posted_by: userId,
+        posted_by: userProfile?.id,
         audio: audioUrl,
       },
     ]);
     if (data) {
       console.log(data, "success");
     } else console.log(error, "error some");
-    router.push("/account");
     setIsOpen(false);
   };
 
@@ -65,7 +57,7 @@ function AddBookModal({ isOpen, setIsOpen }: Props) {
       formData.genre &&
       formData.part &&
       formData.description &&
-      formData.audio
+      audioUrl
     ) {
       createPost(e);
     } else {
@@ -96,7 +88,7 @@ function AddBookModal({ isOpen, setIsOpen }: Props) {
             <input
               className="w-full rounded-sm border-none bg-[#C6DBCE] p-2"
               type="text"
-              name=""
+              name="title"
               id=""
               onChange={(e) => handleFormData(e)}
             />
@@ -104,14 +96,14 @@ function AddBookModal({ isOpen, setIsOpen }: Props) {
               <input
                 className="w-[60%] rounded-sm border-none bg-[#C6DBCE] p-2"
                 type="text"
-                name=""
+                name="genre"
                 id=""
                 onChange={(e) => handleFormData(e)}
               />
               <input
                 className="w-[37%] rounded-sm border-none bg-[#C6DBCE] p-2"
                 type="text"
-                name=""
+                name="description"
                 id=""
                 onChange={(e) => handleFormData(e)}
               />
@@ -119,7 +111,7 @@ function AddBookModal({ isOpen, setIsOpen }: Props) {
             <input
               className="w-[37%] rounded-sm border-none bg-[#C6DBCE] p-2"
               type="text"
-              name=""
+              name="part"
               id=""
               onChange={(e) => handleFormData(e)}
             />
@@ -142,12 +134,12 @@ function AddBookModal({ isOpen, setIsOpen }: Props) {
                 />
               </label>
             </div>
-            <input
+            <button
+              type="submit"
               className="w-full rounded-sm border-none bg-[#C6DBCE] p-2"
-              type="text"
-              name=""
-              id=""
-            />
+            >
+              Submit
+            </button>
           </form>
 
           <button

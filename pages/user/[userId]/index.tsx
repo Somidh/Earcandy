@@ -3,6 +3,7 @@ import BookContainer from "@/components/BookContainer";
 import FollowersModal from "@/components/FollowersModal";
 import UserProfile from "@/components/UserProfile";
 import getUserById from "@/server/lib/getUserById";
+import supabase from "@/server/supabase";
 import useStore from "@/store/store";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -16,20 +17,70 @@ function UserPage({}: Props) {
   const [userById, setUserById] = useState<any>();
   const router = useRouter();
   const { userId } = router.query;
+  const [followed, setFollowed] = useState<boolean>(false);
+  const [myFollowing, setMyFollowing] = useState<any>([]);
+  const [myFollowers, setMyFollowers] = useState<any>([]);
 
-  const { userProfile } = useStore((state) => {
+  const { userProfile } = useStore((state: any) => {
     return {
       userProfile: state.userProfile,
     };
   });
 
-  useEffect(() => {
-    if (!userId) return;
+  const checkFollowed = async () => {
+    const { data, error } = await supabase
+      .from("follow")
+      .select("*")
+      .match({ user_id: userId, followed_by: userProfile.id });
 
+    if (data) setFollowed(true);
+    else console.log(error, "erorjeojo");
+  };
+
+  const getFollowing = async () => {
+    const { data, error } = await supabase
+      .from("follow")
+      .select("users(*)")
+      .eq("followed_by", userProfile.id);
+
+    setMyFollowing(data);
+
+    if (error) console.log(error, "error from getfollwoing");
+  };
+
+  const getFollowers = async () => {
+    const { data, error } = await supabase
+      .from("follow")
+      .select("users(*)")
+      .eq("user_id", userProfile.id);
+
+    setMyFollowers(data);
+
+    if (error) console.log(error, "error from getfollwoing");
+  };
+
+  useEffect(() => {
+    if (userProfile.id) {
+      getFollowing();
+      getFollowers();
+      checkFollowed();
+    }
+    if (!userId) return;
     (async () => {
       setUserById(await getUserById(userId));
     })();
-  }, [userId]);
+  }, [userProfile.id]);
+
+  const handleFollow = async () => {
+    if (followed) return;
+    const { data, error } = await supabase
+      .from("follow")
+      .insert([{ user_id: userId, followed_by: userProfile.id }]);
+
+    if (error) console.log(error, "ahdnelfollwo error");
+    else setFollowed((prev) => !prev);
+  };
+
 
   return (
     // remove margin top later
@@ -38,6 +89,8 @@ function UserPage({}: Props) {
       <FollowersModal
         isOpenFollowerlist={isOpenFollwerList}
         setIsOpenFollowerlist={setIsOpenFollwerList}
+        myFollowing={myFollowing}
+        myFollowers={myFollowers}
       />
       <div className="flex justify-between">
         <div className="flex items-center gap-4">
