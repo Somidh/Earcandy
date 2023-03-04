@@ -49,11 +49,11 @@ const Navbar: FC = () => {
         ))}
       </ul>
     
-      <button 
+      <Link href={'/login'}
          onClick={handleLogin}
          className={`text-[18px] text-white bg-btn rounded-full py-[11px] px-16 font-bold ${noto_serif.className}`}>
-         login
-      </button>
+         Login
+      </Link>
     </div>
   );
 };
