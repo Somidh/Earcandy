@@ -1,4 +1,4 @@
-import { IUser } from "@/types/TUser";
+import { TUser } from "@/types/TUser";
 import supabase from "../supabase";
 
 export default async function editUser(user: IUser, userBio: string) {
