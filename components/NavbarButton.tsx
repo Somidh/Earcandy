@@ -23,7 +23,7 @@ const NavbarButton: FC = () => {
   };
 
   const handleSignOut = () => {
-        router.push("/api/auth/signout");
+        router.push("/api/auth/logout");
   }
   const { userProfile } = useStore((state) => {
     return {
