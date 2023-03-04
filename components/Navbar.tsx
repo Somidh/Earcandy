@@ -57,7 +57,7 @@ const Navbar: FC = () => {
       </ul>
 
       {userProfile.id ? (
-        <Link href={`/user/${userProfile.id}}`}>
+        <Link href={`/user/${userProfile.id}`}>
           <img
             className="h-10 w-10 rounded-full"
             src={userProfile.user_image ? userProfile.user_image : ""}
