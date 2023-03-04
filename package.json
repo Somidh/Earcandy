@@ -16,7 +16,6 @@
     "prettier": "prettier --write ."
   },
   "dependencies": {
-
     "@headlessui/react": "^1.7.12",
     "@next/font": "^13.1.6",
     "@supabase/realtime-js": "^2.6.0",

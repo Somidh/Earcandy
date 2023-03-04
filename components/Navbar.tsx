@@ -32,8 +32,9 @@ const Navbar: FC = () => {
       </Link>
 
       <ul className="flex items-center gap-20 ">
-        {navList.map((item) => (
+        {navList.map((item, idx) => (
           <Link
+          key={idx}
             href={item.url}
             className={`text-xl font-bold ${noto_serif.className}`}
           >
@@ -43,9 +44,9 @@ const Navbar: FC = () => {
       </ul>
     
 
-      <button className={`text-[18px] text-white bg-[#303933] rounded-full py-[11px] px-16 font-bold ${noto_serif.className}`}>
+      <Link href={'/login'} className={`text-[18px] text-white bg-btn rounded-full py-[11px] px-16 font-bold ${noto_serif.className}`}>
         Login
-      </button>
+      </Link>
     </div>
   );
 };

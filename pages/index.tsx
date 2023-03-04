@@ -21,25 +21,25 @@ const Home: FC = () => {
       name: "Audio books",
       count: "320 book",
       img: headphone_img,
-      bgColor: "#8A84E2"
+      bgColor: "#8A84E2",
     },
     {
       name: "Children books",
       count: "300 book",
       img: reading_img,
-      bgColor: "#f0b67f"
+      bgColor: "#f0b67f",
     },
     {
       name: "Fantasy books ",
       count: "450 book",
       img: unicorn_img,
-      bgColor: "#87bba2"
+      bgColor: "#87bba2",
     },
     {
       name: "Cooking books",
       count: "80 book",
       img: cooking_img,
-      bgColor: "#acdde7"
+      bgColor: "#acdde7",
     },
   ];
 
@@ -47,11 +47,11 @@ const Home: FC = () => {
     <div className="h-screen px-40">
       <Navbar />
 
-      <div className="w-full text-center  relative mb-20">
+      <div className="relative mb-20  w-full text-center">
         <Image
           src={arrow}
           alt="arrow_img"
-          className="absolute top-1/2 -translate-y-1/2 left-36 w-40"
+          className="absolute top-1/2 left-36 w-40 -translate-y-1/2"
         />
         <Image
           src={circle}
@@ -69,7 +69,7 @@ const Home: FC = () => {
         </h1>
       </div>
 
-      <div className="flex items-start justify-between gap-20 relative">
+      <div className="relative flex items-start justify-between gap-20">
         <Image
           src={smallstar}
           alt="star_img"
@@ -81,44 +81,51 @@ const Home: FC = () => {
           className="absolute -bottom-10 left-44"
         />
         <div className="flex flex-col items-start gap-7">
-          <div className="flex items-center gap-3 cursor-pointer">
+          <div className="flex cursor-pointer items-center gap-3">
             <h1 className={`text-3xl font-bold ${noto_serif.className}`}>
               Genre
             </h1>
             <HiChevronDown className="text-3xl" />
           </div>
-          <div className="w-80 h-96 flex flex-col gap-5">
+          <div className="flex h-96 w-80 flex-col gap-5">
             {booksCategories.map((category, idx) => {
               const { name, count, img, bgColor } = category;
-              console.log(bgColor)
               return (
-                <div>
-                  <Sidebar name={name} count={count} img={img.src} bgColor={bgColor} />
-                </div>
+                <Sidebar
+                  key={idx}
+                  name={name}
+                  count={count}
+                  img={img.src}
+                  bgColor={bgColor}
+                />
               );
             })}
           </div>
         </div>
 
-        <div className="  w-80 h-80 border-2 border-[#95BDA4] p-2 rounded-[40px]">
-          <div className="bg-[#95BDA4]/40 w-full h-full rounded-[40px]"></div>
+        <div className="  h-80 w-80 rounded-[40px] border-2 border-[#95BDA4] p-2">
+          <div className="h-full w-full rounded-[40px] bg-[#95BDA4]/40"></div>
         </div>
 
         <div className="flex flex-col items-start gap-7">
-          <div className="flex items-center gap-3 cursor-pointer">
+          <div className="flex cursor-pointer items-center gap-3">
             <h1 className={`text-3xl font-bold ${noto_serif.className}`}>
               Trending
             </h1>
             <HiChevronDown className="text-3xl" />
           </div>
-          <div className="w-80 h-96 flex flex-col gap-5">
+          <div className="flex h-96 w-80 flex-col gap-5">
             {booksCategories.map((category, idx) => {
               const { name, count, img, bgColor } = category;
 
               return (
-                <div>
-                  <Sidebar name={name} count={count} img={img.src} bgColor={bgColor} />
-                </div>
+                  <Sidebar
+                    key={idx}
+                    name={name}
+                    count={count}
+                    img={img.src}
+                    bgColor={bgColor}
+                  />
               );
             })}
           </div>

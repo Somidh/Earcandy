@@ -20,7 +20,7 @@ const Sidebar: FC<SidebarProps> = ({ name, count, img, bgColor }) => {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="flex items-center gap-2">
-        <div className={`w-14 h-14 flex items-center justify-center rounded-[10px] shadow-2xl`}>
+        <div style={{backgroundColor: bgColor}} className={` w-14 h-14 flex items-center justify-center rounded-[10px] shadow-2xl`}>
           <Image
             width={40}
             height={40}
@@ -28,7 +28,7 @@ const Sidebar: FC<SidebarProps> = ({ name, count, img, bgColor }) => {
             alt="type_img"
           />
         </div>
-        <div className={`text-black  ${playfair_display.className}`}>
+        <div className={`text-base  ${playfair_display.className}`}>
           <h1 className="font-bold">{name}</h1>
           <p className="text-slate-600">{count}</p>
         </div>
