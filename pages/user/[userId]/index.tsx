@@ -7,7 +7,7 @@ import { useState } from "react";
 
 type Props = {};
 
-function userPage({}: Props) {
+function UserPage({}: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenFollwerList, setIsOpenFollwerList] = useState<boolean>(false);
 
@@ -57,4 +57,4 @@ function userPage({}: Props) {
   );
 }
 
-export default userPage;
+export default UserPage;
