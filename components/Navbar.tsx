@@ -1,13 +1,20 @@
+import { noto_serif, playfair_display } from "@/public/assets/fonts/font";
+import useStore from "@/store/store";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import type { FC } from "react";
-import { playfair_display, noto_serif } from "@/public/assets/fonts/font";
 
 const Navbar: FC = () => {
   const router = useRouter();
   const handleLogin = () => {
     router.push("/api/auth/login");
   };
+
+  const { userProfile } = useStore((state) => {
+    return {
+      userProfile: state.userProfile,
+    };
+  });
 
   const navList = [
     {
@@ -40,7 +47,7 @@ const Navbar: FC = () => {
       <ul className="flex items-center gap-20 ">
         {navList.map((item, idx) => (
           <Link
-          key={idx}
+            key={idx}
             href={item.url}
             className={`text-xl font-bold ${noto_serif.className}`}
           >
@@ -48,12 +55,17 @@ const Navbar: FC = () => {
           </Link>
         ))}
       </ul>
-    
-      <button 
-         onClick={handleLogin}
-         className={`text-[18px] text-white bg-btn rounded-full py-[11px] px-16 font-bold ${noto_serif.className}`}>
-         login
-      </button>
+
+      {userProfile.id ? (
+        userProfile.full_name
+      ) : (
+        <button
+          onClick={handleLogin}
+          className={`rounded-full bg-btn py-[11px] px-16 text-[18px] font-bold text-white ${noto_serif.className}`}
+        >
+          login
+        </button>
+      )}  
     </div>
   );
 };
