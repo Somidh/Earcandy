@@ -20,6 +20,7 @@ function UserPage({}: Props) {
   const [followed, setFollowed] = useState<boolean>(false);
   const [myFollowing, setMyFollowing] = useState<any>([]);
   const [myFollowers, setMyFollowers] = useState<any>([]);
+  const [myPosts, setMyPosts] = useState<any>([]);
 
   const { userProfile } = useStore((state: any) => {
     return {
@@ -59,11 +60,24 @@ function UserPage({}: Props) {
     if (error) console.log(error, "error from getfollwoing");
   };
 
+  const getMyPosts = async () => {
+    const { data, error } = await supabase
+      .from("posts")
+      .select("*")
+      .eq("posted_by", userProfile.id);
+
+    setMyPosts(data);
+    console.log(data, "my posts");
+
+    if (error) console.log(error, "error from getMyposts");
+  };
+
   useEffect(() => {
     if (userProfile.id) {
       getFollowing();
       getFollowers();
       checkFollowed();
+      getMyPosts();
     }
     if (!userId) return;
     (async () => {
@@ -129,7 +143,7 @@ function UserPage({}: Props) {
           + Add
         </button>
       </div>
-      <BookContainer />
+      <BookContainer myPosts={myPosts} />
     </main>
   );
 }
