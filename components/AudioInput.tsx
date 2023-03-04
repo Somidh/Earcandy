@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import supabase from "@/server/supabase";
-import { FC, useEffect, useState } from "react";
+import type { FC } from "react";
+import { useEffect, useState } from "react";
 
 type AudioProps = {
   url: string;
@@ -45,7 +47,7 @@ const AudioInput: FC<AudioProps> = ({ url, onUpload }) => {
       const fileName = `${Math.random()}.${fileExt}`;
       const filePath = `${fileName}`;
 
-      let { error: uploadError } = await supabase.storage
+      const { error: uploadError } = await supabase.storage
         .from("audio")
         .upload(filePath, file);
 
