@@ -6,7 +6,7 @@ export default async function getUserById(userId: any) {
     .select("*")
     .eq("id", userId);
 
-  console.log(data);
+  // console.log(data);
 
   if (!error) return data;
   else console.log("error inserting", error);

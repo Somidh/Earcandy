@@ -20,6 +20,7 @@ function UserPage({}: Props) {
   const [followed, setFollowed] = useState<boolean>(false);
   const [myFollowing, setMyFollowing] = useState<any>([]);
   const [myFollowers, setMyFollowers] = useState<any>([]);
+  const [myPosts, setMyPosts] = useState<any>([]);
 
   const { userProfile } = useStore((state: any) => {
     return {
@@ -59,11 +60,24 @@ function UserPage({}: Props) {
     if (error) console.log(error, "error from getfollwoing");
   };
 
+  const getMyPosts = async () => {
+    const { data, error } = await supabase
+      .from("posts")
+      .select("*")
+      .eq("posted_by", userProfile.id);
+
+    setMyPosts(data);
+    console.log(data, "my posts");
+
+    if (error) console.log(error, "error from getMyposts");
+  };
+
   useEffect(() => {
     if (userProfile.id) {
       getFollowing();
       getFollowers();
       checkFollowed();
+      getMyPosts();
     }
     if (!userId) return;
     (async () => {
@@ -80,7 +94,6 @@ function UserPage({}: Props) {
     if (error) console.log(error, "ahdnelfollwo error");
     else setFollowed((prev) => !prev);
   };
-
 
   return (
     // remove margin top later
@@ -121,7 +134,7 @@ function UserPage({}: Props) {
       <div className="my-5 flex justify-between font-medium">
         <div className="flex gap-4 text-[#303933]">
           <Link href="/">5 posts</Link>
-          <Link href="/">8 Liked post</Link>
+          <Link href={`/user/${userProfile.id}/likes`}>8 Liked post</Link>
         </div>
         <button
           className="rounded-full bg-[#303933] px-4 py-1 text-white"
@@ -130,7 +143,7 @@ function UserPage({}: Props) {
           + Add
         </button>
       </div>
-      <BookContainer />
+      <BookContainer myPosts={myPosts} />
     </main>
   );
 }
