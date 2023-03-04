@@ -45,7 +45,7 @@ const Audio: FC<AudioProps> = ({ url, onUpload }) => {
       const fileName = `${Math.random()}.${fileExt}`;
       const filePath = `${fileName}`;
 
-      let { error: uploadError } = await supabase.storage
+      const { error: uploadError } = await supabase.storage
         .from("audio")
         .upload(filePath, file);
 
