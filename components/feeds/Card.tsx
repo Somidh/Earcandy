@@ -1,17 +1,41 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import addToFavourites from "@/lib/addToFavourites";
-import playAudio from "@/lib/playAudio";
+import useStore from "@/store/store";
 import type { TCard } from "@/types/TCard";
 import {
   EllipsisVerticalIcon,
   HeartIcon,
+  PauseIcon,
   PlayIcon,
 } from "@heroicons/react/20/solid";
 import type { FC } from "react";
 import ClockIcon from "../icons/ClockIcon";
 
 type CardProps = TCard;
+const Card: FC<CardProps> = ({ duration, genre, title, user, audioLink }) => {
+  const { audioService } = useStore((state) => {
+    return {
+      audioService: state.audioService,
+    };
+  });
+  function play() {
+    if (audioService.currentAudio !== audioLink) {
+      audioService.setAudio = audioLink;
+      audioService.isPlaying = false;
+    }
+    if (!audioService.isPlaying) {
+      audioService.isPlaying = true;
+      audioService.play();
+    }
+  }
 
-const Card: FC<CardProps> = ({ duration, genre, title, user }) => {
+  function pause() {
+    if (audioService.isPlaying) {
+      audioService.isPlaying = false;
+      audioService.pause();
+    }
+  }
+
   return (
     <div className="relative flex w-full max-w-2xl gap-2 overflow-hidden rounded-xl bg-accent">
       {/* 3-dot */}
@@ -30,10 +54,16 @@ const Card: FC<CardProps> = ({ duration, genre, title, user }) => {
         </button>
         {/* playAudio */}
         <button
-          onClick={() => playAudio({ contentId: "dhfgjg" })}
+          onClick={() => {
+            audioService.isPlaying ? pause() : play();
+          }}
           className="rounded-full bg-btn p-3 text-white outline-none"
         >
-          <PlayIcon className="h-6 w-6 translate-x-[2px]" />
+          {audioService.isPlaying ? (
+            <PauseIcon className="h-6 w-6 " />
+          ) : (
+            <PlayIcon className="h-6 w-6 translate-x-[2px]" />
+          )}
         </button>
       </div>
 
