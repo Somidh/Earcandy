@@ -1,5 +1,6 @@
 import { Dialog, Tab } from "@headlessui/react";
-import UserListContainer from "./UserListContainer";
+import FollowersContainer from "./FollowersContainer";
+import FollowingContainer from "./FollowingContainer";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
@@ -8,11 +9,15 @@ function classNames(...classes: any) {
 type Props = {
   isOpenFollowerlist: any;
   setIsOpenFollowerlist: any;
+  myFollowing: any;
+  myFollowers: any;
 };
 
 const FollowersModal = ({
   isOpenFollowerlist,
   setIsOpenFollowerlist,
+  myFollowing,
+  myFollowers,
 }: Props) => {
   return (
     <Dialog
@@ -52,10 +57,10 @@ const FollowersModal = ({
             </Tab.List>
             <Tab.Panels className={classNames("rounded-xl bg-white p-3")}>
               <Tab.Panel className="">
-                <UserListContainer />
+                <FollowingContainer myFollowing={myFollowing} />
               </Tab.Panel>
               <Tab.Panel className="">
-                <UserListContainer />
+                <FollowersContainer myFollowers={myFollowers} />
               </Tab.Panel>
             </Tab.Panels>
           </Tab.Group>
