@@ -17,8 +17,11 @@
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^2.2.2",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
     "@headlessui/react": "^1.7.12",
     "@heroicons/react": "^2.0.16",
+    "@mui/material": "^5.11.11",
     "@next/font": "^13.1.6",
     "@supabase/realtime-js": "^2.6.0",
     "@supabase/supabase-js": "^2.8.0",

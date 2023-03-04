@@ -15,7 +15,7 @@ const Sidebar: FC<SidebarProps> = ({ name, count, img, bgColor }) => {
 
   return (
     <div
-      className="hover:bg-[#95BDA4]/40 hover:shadow-xl flex items-center justify-between px-5 py-2 rounded-xl cursor-pointer transition duration-500 "
+      className="hover:bg-[#95BDA4]/40 hover:shadow-xl flex w-[18em] items-center justify-between px-5 py-2 rounded-xl cursor-pointer transition duration-500 "
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

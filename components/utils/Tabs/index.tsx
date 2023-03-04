@@ -14,7 +14,7 @@ const Tabs: FC<TabsProps> = ({ children }) => {
   const activeTabContent = arrayChildren[activeTabIndex]?.props?.children;
   return (
     <>
-      <ul className="flex min-w-full flex-none justify-evenly space-x-6 overflow-auto border-b-2 border-b-slate-300 pb-px ">
+      <ul className="flex w-full mx-auto flex-none justify-evenly space-x-6  border-b-2 border-b-slate-300  overflow-hidden">
         {arrayChildren.map((child: ReactElement, i: number) => (
           <li
             key={i}
