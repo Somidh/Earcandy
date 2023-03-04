@@ -23,6 +23,9 @@ const NavbarButton: FC = () => {
   const handleSignOut = () => {
     router.push("/api/auth/logout");
   };
+  const handleLogin = () => {
+    router.push("/api/auth/login");
+  };
   const { userProfile } = useStore((state) => {
     return {
       userProfile: state.userProfile,
@@ -52,13 +55,12 @@ const NavbarButton: FC = () => {
         </button>
       ) : (
         // </Link>
-        <Link href={"/login"}>
-          <button
-            className={`rounded-md bg-btn px-8 py-2 font-bold uppercase text-[#F4F1E7] ${open_sans.className}`}
-          >
-            Login
-          </button>
-        </Link>
+        <button
+          onClick={handleLogin}
+          className={`rounded-md bg-btn px-8 py-2 font-bold uppercase text-[#F4F1E7] ${open_sans.className}`}
+        >
+          Login
+        </button>
       )}
 
       <Menu
