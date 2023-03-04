@@ -1,11 +1,7 @@
+import { IUser } from "@/types/TUser";
 import { create } from "zustand";
 
-type User = {
-  userId: string;
-  username: string;
-  email: string;
-  password: string;
-};
+type User = IUser;
 
 type StoreValues = {
   userId: string;
@@ -17,7 +13,14 @@ type StoreValues = {
   setEmail: (email: string) => void;
   setPassword: (password: string) => void;
   setUsername: (username: string) => void;
-  setUserProfile: ({ username, email }: User) => void;
+  setUserProfile: ({
+    username,
+    email,
+    id,
+    full_name,
+    user_image,
+    bio,
+  }: IUser) => void;
 };
 
 const useStore = create<StoreValues>((set, get) => ({
@@ -25,7 +28,14 @@ const useStore = create<StoreValues>((set, get) => ({
   email: "",
   password: "",
   username: "",
-  userProfile: { userId: "", username: "", email: "", password: "" },
+  userProfile: {
+    id: "",
+    username: "",
+    email: "",
+    full_name: "",
+    user_image: "",
+    bio: "",
+  },
 
   setEmail: (email: string) => {
     set({
@@ -44,9 +54,16 @@ const useStore = create<StoreValues>((set, get) => ({
     });
   },
 
-  setUserProfile: ({ username, email, userId }: User) => {
+  setUserProfile: ({
+    username,
+    email,
+    id,
+    full_name,
+    user_image,
+    bio,
+  }: User) => {
     set({
-      userProfile: { username, email, userId, password: "" },
+      userProfile: { username, email, id, full_name, user_image, bio },
     });
   },
 
