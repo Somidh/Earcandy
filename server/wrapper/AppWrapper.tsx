@@ -1,8 +1,10 @@
 import createUser from "@/server/lib/createUser";
 import useStore from "@/store/store";
-import { IUser } from "@/types/TUser";
-import { UserProfile, useUser } from "@auth0/nextjs-auth0/client";
-import { FC, ReactNode, useEffect } from "react";
+import type { TUser } from "@/types/TUser";
+import type { UserProfile } from "@auth0/nextjs-auth0/client";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import type { FC, ReactNode } from "react";
+import { useEffect } from "react";
 import supabase from "../supabase";
 
 type TAppWrapper = {
@@ -26,12 +28,12 @@ const AppWrapper: FC<TAppWrapper> = ({ children }) => {
     if (data?.[0]?.email) {
       console.log("user already exits");
       console.log(data?.[0]);
-      setUserProfile(data?.[0] as IUser);
+      setUserProfile(data?.[0] as TUser);
       return;
     } else {
       const newUser = await createUser(user as UserProfile);
       console.log(newUser, "newuser");
-      setUserProfile(newUser as IUser);
+      setUserProfile(newUser as TUser);
     }
   };
 
