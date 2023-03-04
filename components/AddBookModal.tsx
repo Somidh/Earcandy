@@ -58,6 +58,8 @@ function AddBookModal({ isOpen, setIsOpen }: Props) {
     setIsOpen(false);
   };
 
+  console.log(formData);
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     if (
@@ -96,7 +98,7 @@ function AddBookModal({ isOpen, setIsOpen }: Props) {
             <input
               className="w-full rounded-sm border-none bg-[#C6DBCE] p-2"
               type="text"
-              name=""
+              name="title"
               id=""
               onChange={(e) => handleFormData(e)}
             />
@@ -104,14 +106,14 @@ function AddBookModal({ isOpen, setIsOpen }: Props) {
               <input
                 className="w-[60%] rounded-sm border-none bg-[#C6DBCE] p-2"
                 type="text"
-                name=""
+                name="genre"
                 id=""
                 onChange={(e) => handleFormData(e)}
               />
               <input
                 className="w-[37%] rounded-sm border-none bg-[#C6DBCE] p-2"
                 type="text"
-                name=""
+                name="description"
                 id=""
                 onChange={(e) => handleFormData(e)}
               />
@@ -119,7 +121,7 @@ function AddBookModal({ isOpen, setIsOpen }: Props) {
             <input
               className="w-[37%] rounded-sm border-none bg-[#C6DBCE] p-2"
               type="text"
-              name=""
+              name="part"
               id=""
               onChange={(e) => handleFormData(e)}
             />
