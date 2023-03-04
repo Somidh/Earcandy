@@ -1,8 +1,16 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import AppWrapper from "@/server/wrapper/AppWrapper";
+import { UserProvider } from "@auth0/nextjs-auth0/client";
+import type { AppProps } from "next/app";
+import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <UserProvider>
+      <AppWrapper>
+        <Component {...pageProps} />
+      </AppWrapper>
+    </UserProvider>
+  );
 }
 
-export default MyApp
+export default MyApp;
