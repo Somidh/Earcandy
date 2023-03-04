@@ -18,7 +18,7 @@ const Navbar: FC = () => {
 
   const navList = [
     {
-      url: "/",
+      url: "/feed",
       name: "Discover",
     },
     {
@@ -65,7 +65,7 @@ const Navbar: FC = () => {
         >
           login
         </button>
-      )}  
+      )}
     </div>
   );
 };
