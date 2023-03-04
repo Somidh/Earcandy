@@ -8,6 +8,7 @@ import type { TCard } from "@/types/TCard";
 import type { TMenuItem } from "@/types/TMenuItem";
 import type { TUser } from "@/types/TUser";
 import type { GetStaticProps } from "next";
+import { noto_serif, playfair_display } from "@/public/assets/fonts/font";
 
 type ExploreProps = {
   exploreContents: TCard[];
@@ -24,6 +25,54 @@ const Explore: FC<ExploreProps> = ({
   menu,
   creatorsList,
 }) => {
+  const tContent = [
+    {
+      duration: "12hours and 15mins",
+      genre: "fantasy",
+      title: "Mc Stantd sala",
+      user: "Mc Aadarsh",
+      contentId: "abcdefgh",
+    },
+  ]
+  
+  const eContent = [
+    {
+      duration: "12hours and 15mins",
+      genre: "fantasy",
+      title: "Mc Stantd sala",
+      user: "Mc Aadarsh",
+      contentId: "abcdefgh",
+    },
+    {
+      duration: "12hours and 15mins",
+      genre: "fantasy",
+      title: "Mc Stantd sala",
+      user: "Mc Aadarsh",
+      contentId: "abcdefgh",
+    },
+    {
+      duration: "12hours and 15mins",
+      genre: "fantasy",
+      title: "Mc Stantd sala",
+      user: "Mc Aadarsh",
+      contentId: "abcdefgh",
+    },
+    {
+      duration: "12hours and 15mins",
+      genre: "fantasy",
+      title: "Mc Stantd sala",
+      user: "Mc Aadarsh",
+      contentId: "abcdefgh",
+    },
+    {
+      duration: "12hours and 15mins",
+      genre: "fantasy",
+      title: "Mc Stantd sala",
+      user: "Mc Aadarsh",
+      contentId: "abcdefgh",
+    },
+  ];
+
   return (
     <main>
       <FeedLayout
@@ -35,10 +84,13 @@ const Explore: FC<ExploreProps> = ({
           <Tab title="For You">
             <div className="flex-auto">
               <div className="space-y-4 p-4">
-                <h1 className="title">Trending</h1>
+                <h1 className={`title ${noto_serif.className}`}>
+                  Trending
+                </h1>
                 {/* slider */}
                 <div className="">
-                  {trendingContents.map((card, i) => (
+                  {/* trendingContents */}
+                  {tContent.map((card, i) => (
                     <Card key={card.user + `${i}`} {...card} />
                   ))}
                 </div>
@@ -46,9 +98,13 @@ const Explore: FC<ExploreProps> = ({
               {/* will fix explore scrolling */}
               <div className="h-fit flex-auto">
                 <div className="mb-8 h-[calc(100vh-21rem)] space-y-4 py-4">
-                  <h1 className="title px-4">Explore</h1>
-                  <div className="flex max-h-full flex-col items-center gap-4 overflow-auto px-4">
-                    {exploreContents.map((card, i) => (
+                  <h1 className={`title px-4 ${noto_serif.className}`}>
+                    Explore
+                  </h1>
+                  <div className="flex max-h-full flex-col items-center gap-4 overflow-auto px-4 ">
+                    {/* exploreContents */}
+
+                    {eContent.map((card, i) => (
                       <div
                         key={card.user + `${i}`}
                         className="w-full flex-shrink-0 "
@@ -64,7 +120,7 @@ const Explore: FC<ExploreProps> = ({
           <Tab title="Following">
             <div className="mt-4 h-[calc(100vh-4.4rem)] overflow-auto">
               <div className="flex max-h-full flex-col items-center gap-4 overflow-auto px-4">
-                {followingContents.map((card, i) => (
+                {eContent.map((card, i) => (
                   <>
                     <div
                       key={card.user + `${i}`}

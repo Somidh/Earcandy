@@ -3,6 +3,7 @@ import useStore from "@/store/store";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import type { FC } from "react";
+import NavbarButton from "./NavbarButton";
 
 const Navbar: FC = () => {
   const router = useRouter();
@@ -56,6 +57,9 @@ const Navbar: FC = () => {
         ))}
       </ul>
 
+      {<NavbarButton />}
+
+      {/* 
       {userProfile.id ? (
         <Link href={`/user/${userProfile.id}`}>
           <img
@@ -64,6 +68,7 @@ const Navbar: FC = () => {
             alt=""
           />
         </Link>
+        
       ) : (
         <button
           onClick={handleLogin}
@@ -71,7 +76,7 @@ const Navbar: FC = () => {
         >
           login
         </button>
-      )}
+      )} */}
     </div>
   );
 };

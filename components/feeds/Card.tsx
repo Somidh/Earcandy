@@ -1,5 +1,6 @@
 import addToFavourites from "@/lib/addToFavourites";
 import playAudio from "@/lib/playAudio";
+import { open_sans } from "@/public/assets/fonts/font";
 import type { TCard } from "@/types/TCard";
 import {
   EllipsisVerticalIcon,
@@ -43,14 +44,14 @@ const Card: FC<CardProps> = ({ duration, genre, title, user }) => {
       <div className="max-w-sm space-y-2 p-4">
         <div className="-space-y-1">
           {/* genre */}
-          <div className="text-xss">{genre}</div>
+          <div className="text-xss text-[#000000]/60 capitalize">{genre}</div>
           {/* title */}
-          <div className="text-xl font-semibold">{title}</div>
+          <div className={`text-2xl text-[#000000]/70 font-semibold  ${open_sans.className}`}>{title}</div>
         </div>
         {/* user */}
-        <div className="text-sm">By {user}</div>
+        <div className={`text-sm text-[#000000]/70 capitalize ${open_sans.className} `}>By {user}</div>
         {/* duration */}
-        <div className="flex items-center gap-1 text-xs">
+        <div className={`flex items-center gap-1 text-xs text-[#000000]/70 capitalize  ${open_sans.className} `}>
           <ClockIcon className=" h-5 w-5" />
           {duration}
         </div>

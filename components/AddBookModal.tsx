@@ -116,7 +116,7 @@ function AddBookModal({ isOpen, setIsOpen }: Props) {
               onChange={(e) => handleFormData(e)}
             />
             <div className="flex h-[8rem] cursor-pointer flex-col items-center justify-center rounded-md border border-dashed border-[#8B9A91]">
-              <label className="flex flex-col items-center justify-center text-[#303933]">
+              <label className="flex flex-col w-full h-full items-center justify-center text-[#303933]">
                 <svg
                   className="h-8 w-8"
                   fill="currentColor"
