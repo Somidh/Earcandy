@@ -57,7 +57,13 @@ const Navbar: FC = () => {
       </ul>
 
       {userProfile.id ? (
-        userProfile.full_name
+        <Link href={`/user/${userProfile.id}}`}>
+          <img
+            className="h-10 w-10 rounded-full"
+            src={userProfile.user_image}
+            alt=""
+          />
+        </Link>
       ) : (
         <button
           onClick={handleLogin}
@@ -65,7 +71,7 @@ const Navbar: FC = () => {
         >
           login
         </button>
-      )}  
+      )}
     </div>
   );
 };
