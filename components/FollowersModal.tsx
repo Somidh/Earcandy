@@ -57,10 +57,10 @@ const FollowersModal = ({
             </Tab.List>
             <Tab.Panels className={classNames("rounded-xl bg-white p-3")}>
               <Tab.Panel className="">
-                <FollowingContainer myFollowing={myFollowing} />
+                <FollowersContainer myFollowers={myFollowers} />
               </Tab.Panel>
               <Tab.Panel className="">
-                <FollowersContainer myFollowers={myFollowers} />
+                <FollowingContainer myFollowing={myFollowing} />
               </Tab.Panel>
             </Tab.Panels>
           </Tab.Group>
