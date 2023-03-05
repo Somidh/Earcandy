@@ -1,9 +1,10 @@
 import type { TCard } from "@/types/TCard";
 
 export default function playAudio({
-  contentId,
+  audioLink,
 }: {
-  contentId: TCard["contentId"];
+  audioLink: TCard["audioLink"];
 }) {
-  console.log("Playing Audio", contentId);
+  const audio = new Audio(audioLink);
+  audio.play();
 }

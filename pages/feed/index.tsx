@@ -144,8 +144,37 @@ export default Explore;
 export const getStaticProps: GetStaticProps<ExploreProps> = () => {
   return {
     props: {
-      exploreContents: [],
-      trendingContents: [],
+      exploreContents: [
+        {
+          audioLink:
+            "https://pvvbzesrxmiuksjjhqac.supabase.co/storage/v1/object/public/audio/file_example_MP3_1MG.mp3",
+          duration: "12hours and 15mins",
+          genre: "fantacy",
+          title: "Mc Stantd sala",
+          user: "Mc=> Madarc*od",
+          contentId: "abcdefgh",
+        },
+        {
+          audioLink:
+            "https://pvvbzesrxmiuksjjhqac.supabase.co/storage/v1/object/public/audio/Baby%20Shark%20(Remix)(audiosong.in).mp3",
+          duration: "12hours and 15mins",
+          genre: "fantacy",
+          title: "Mc Stantd sala",
+          user: "Mc=> Madarc*od",
+          contentId: "abcdefgh",
+        },
+      ],
+      trendingContents: [
+        {
+          audioLink:
+            "https://pvvbzesrxmiuksjjhqac.supabase.co/storage/v1/object/public/audio/file_example_MP3_1MG.mp3",
+          duration: "12hours and 15mins",
+          genre: "fantacy",
+          title: "Mc Stantd sala",
+          user: "Mc=> Madarc*od",
+          contentId: "abcdefgh",
+        },
+      ],
       followingContents: [],
       menu: [
         {
