@@ -29,6 +29,8 @@ function UserPage({}: Props) {
     };
   });
 
+  console.log(myPosts);
+
   const checkFollowed = async () => {
     const { data, error } = await supabase
       .from("follow")
