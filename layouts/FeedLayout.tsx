@@ -1,17 +1,14 @@
-import Navbar from "@/components/Navbar";
+import Sidebar from "@/components/Sidebar";
 import Creators from "@/components/feeds/Creators";
-import Menu from "@/components/feeds/Menu";
 import EarCandy from "@/components/feeds/Menu/EarCandy";
 import type { TMenuItem } from "@/types/TMenuItem";
 import type { TUser } from "@/types/TUser";
-import clsx from "clsx";
-import type { ComponentProps, FC } from "react";
-import SafeLayout from "./SafeLayout";
-import Sidebar from "@/components/Sidebar";
 import cooking_img from "public/assets/images/cooking_book_img.png";
 import headphone_img from "public/assets/images/headphone_img.png";
 import reading_img from "public/assets/images/reading_img.png";
 import unicorn_img from "public/assets/images/unicorn_img.png";
+import type { ComponentProps, FC } from "react";
+import SafeLayout from "./SafeLayout";
 
 type FeedLayoutProps = ComponentProps<"section"> & {
   menu: TMenuItem[];
@@ -81,11 +78,11 @@ const FeedLayout: FC<FeedLayoutProps> = ({
         {/* body */}
         <div className="w-[45em] ">{children}</div>
         {/* <div className="flex h-full flex-shrink-0 lg:col-span-full lg:col-start-5"> */}
-          {/* explore */}
-          {/* user suggestion */}
+        {/* explore */}
+        {/* user suggestion */}
         {/* </div> */}
-        <div className="pt-8 hidden w-64 p-4 lg:block">
-          <Creators creatorList={creatorList} />
+        <div className="hidden w-64 p-4 pt-8 lg:block">
+          <Creators />
         </div>
       </SafeLayout>
     </section>

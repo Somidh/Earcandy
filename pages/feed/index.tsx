@@ -4,12 +4,14 @@ import Card from "@/components/feeds/Card";
 import Tabs from "@/components/utils/Tabs";
 import Tab from "@/components/utils/Tabs/Tab";
 import FeedLayout from "@/layouts/FeedLayout";
+import getExplorableContent from "@/lib/getExplorableContents";
 import { noto_serif } from "@/public/assets/fonts/font";
-import supabase from "@/server/supabase";
-import useStore from "@/store/store";
 import type { TCard } from "@/types/TCard";
 import type { TMenuItem } from "@/types/TMenuItem";
 import type { TUser } from "@/types/TUser";
+import type { GetStaticProps } from "next";
+import supabase from "@/server/supabase";
+import useStore from "@/store/store";
 
 type ExploreProps = {
   exploreContents: TCard[];
@@ -26,53 +28,6 @@ const Explore: FC<ExploreProps> = ({
   menu,
   creatorsList,
 }) => {
-  const tContent = [
-    {
-      duration: "12hours and 15mins",
-      genre: "fantasy",
-      title: "Mc Stantd sala",
-      user: "Mc Aadarsh",
-      contentId: "abcdefgh",
-    },
-  ];
-
-  const eContent = [
-    {
-      duration: "12hours and 15mins",
-      genre: "fantasy",
-      title: "Mc Stantd sala",
-      user: "Mc Aadarsh",
-      contentId: "abcdefgh",
-    },
-    {
-      duration: "12hours and 15mins",
-      genre: "fantasy",
-      title: "Mc Stantd sala",
-      user: "Mc Aadarsh",
-      contentId: "abcdefgh",
-    },
-    {
-      duration: "12hours and 15mins",
-      genre: "fantasy",
-      title: "Mc Stantd sala",
-      user: "Mc Aadarsh",
-      contentId: "abcdefgh",
-    },
-    {
-      duration: "12hours and 15mins",
-      genre: "fantasy",
-      title: "Mc Stantd sala",
-      user: "Mc Aadarsh",
-      contentId: "abcdefgh",
-    },
-    {
-      duration: "12hours and 15mins",
-      genre: "fantasy",
-      title: "Mc Stantd sala",
-      user: "Mc Aadarsh",
-      contentId: "abcdefgh",
-    },
-  ];
 
   const { userProfile } = useStore((state) => {
     return {
@@ -114,7 +69,7 @@ const Explore: FC<ExploreProps> = ({
                 {/* slider */}
                 <div className="">
                   {/* trendingContents */}
-                  {tContent.map((card, i) => (
+                  {trendingContents.map((card, i) => (
                     <Card key={card.user + `${i}`} {...card} />
                   ))}
                 </div>
@@ -128,7 +83,7 @@ const Explore: FC<ExploreProps> = ({
                   <div className="flex max-h-full flex-col items-center gap-4 overflow-auto px-4 ">
                     {/* exploreContents */}
 
-                    {eContent.map((card, i) => (
+                    {exploreContents.map((card, i) => (
                       <div
                         key={card.user + `${i}`}
                         className="w-full flex-shrink-0 "
@@ -144,15 +99,13 @@ const Explore: FC<ExploreProps> = ({
           <Tab title="Following">
             <div className="mt-4 h-[calc(100vh-4.4rem)] overflow-auto">
               <div className="flex max-h-full flex-col items-center gap-4 overflow-auto px-4">
-                {eContent.map((card, i) => (
-                  <>
-                    <div
-                      key={card.user + `${i}`}
-                      className="w-full flex-shrink-0 "
-                    >
-                      <Card {...card} />
-                    </div>
-                  </>
+                {exploreContents.map((card, i) => (
+                  <div
+                    key={card.user + `${i}`}
+                    className="w-full flex-shrink-0 "
+                  >
+                    <Card {...card} />
+                  </div>
                 ))}
               </div>
             </div>
@@ -164,3 +117,53 @@ const Explore: FC<ExploreProps> = ({
 };
 
 export default Explore;
+
+export const getStaticProps: GetStaticProps<ExploreProps> = async () => {
+  const exploreContents = await getExplorableContent();
+  return {
+    props: {
+      exploreContents,
+      trendingContents: [],
+      followingContents: [],
+      menu: [
+        {
+          icon: "",
+          title: "Audio Book",
+          totalBooks: 320,
+        },
+        {
+          icon: "",
+          title: "Audio Book",
+          totalBooks: 320,
+        },
+        {
+          icon: "",
+          title: "Audio Book",
+          totalBooks: 320,
+        },
+        {
+          icon: "",
+          title: "Audio Book",
+          totalBooks: 320,
+        },
+        {
+          icon: "",
+          title: "Audio Book",
+          totalBooks: 320,
+        },
+      ],
+      creatorsList: [
+        {
+          username: "Aaadarsh805",
+        },
+        {
+          username: "RoySomidth",
+        },
+        {
+          username: "ManishBeast",
+        },
+      ],
+    },
+  };
+};
+
