@@ -1,14 +1,17 @@
-import type { FC } from "react";
+import { FC, useEffect } from "react";
 
 import Card from "@/components/feeds/Card";
 import Tabs from "@/components/utils/Tabs";
 import Tab from "@/components/utils/Tabs/Tab";
 import FeedLayout from "@/layouts/FeedLayout";
+import getExplorableContent from "@/lib/getExplorableContents";
+import { noto_serif } from "@/public/assets/fonts/font";
 import type { TCard } from "@/types/TCard";
 import type { TMenuItem } from "@/types/TMenuItem";
 import type { TUser } from "@/types/TUser";
 import type { GetStaticProps } from "next";
-import { noto_serif, playfair_display } from "@/public/assets/fonts/font";
+import supabase from "@/server/supabase";
+import useStore from "@/store/store";
 
 type ExploreProps = {
   exploreContents: TCard[];
@@ -25,53 +28,31 @@ const Explore: FC<ExploreProps> = ({
   menu,
   creatorsList,
 }) => {
-  const tContent = [
-    {
-      duration: "12hours and 15mins",
-      genre: "fantasy",
-      title: "Mc Stantd sala",
-      user: "Mc Aadarsh",
-      contentId: "abcdefgh",
-    },
-  ]
-  
-  const eContent = [
-    {
-      duration: "12hours and 15mins",
-      genre: "fantasy",
-      title: "Mc Stantd sala",
-      user: "Mc Aadarsh",
-      contentId: "abcdefgh",
-    },
-    {
-      duration: "12hours and 15mins",
-      genre: "fantasy",
-      title: "Mc Stantd sala",
-      user: "Mc Aadarsh",
-      contentId: "abcdefgh",
-    },
-    {
-      duration: "12hours and 15mins",
-      genre: "fantasy",
-      title: "Mc Stantd sala",
-      user: "Mc Aadarsh",
-      contentId: "abcdefgh",
-    },
-    {
-      duration: "12hours and 15mins",
-      genre: "fantasy",
-      title: "Mc Stantd sala",
-      user: "Mc Aadarsh",
-      contentId: "abcdefgh",
-    },
-    {
-      duration: "12hours and 15mins",
-      genre: "fantasy",
-      title: "Mc Stantd sala",
-      user: "Mc Aadarsh",
-      contentId: "abcdefgh",
-    },
-  ];
+
+  const { userProfile } = useStore((state) => {
+    return {
+      userProfile: state.userProfile,
+    };
+  });
+
+  const getFollowingPosts = async () => {
+    const { data, error } = await supabase
+      .from("follow")
+      .select("users(id), posts(*)")
+      .eq("posts.posted_by", "users.id");
+
+    if (data) {
+      console.log(data, "my following posts data");
+    }
+
+    if (error) console.log(error, "error in get my follwing posts");
+  };
+
+  useEffect(() => {
+    if (userProfile.id) {
+      getFollowingPosts();
+    }
+  }, []);
 
   return (
     <main>
@@ -84,13 +65,11 @@ const Explore: FC<ExploreProps> = ({
           <Tab title="For You">
             <div className="flex-auto">
               <div className="space-y-4 p-4">
-                <h1 className={`title ${noto_serif.className}`}>
-                  Trending
-                </h1>
+                <h1 className={`title ${noto_serif.className}`}>Trending</h1>
                 {/* slider */}
                 <div className="">
                   {/* trendingContents */}
-                  {tContent.map((card, i) => (
+                  {trendingContents.map((card, i) => (
                     <Card key={card.user + `${i}`} {...card} />
                   ))}
                 </div>
@@ -104,7 +83,7 @@ const Explore: FC<ExploreProps> = ({
                   <div style={{height: "calc(100vh - 490px)"}} className="flex flex-col items-center gap-4 overflow-y-scroll px-4 ">
                     {/* exploreContents */}
 
-                    {eContent.map((card, i) => (
+                    {exploreContents.map((card, i) => (
                       <div
                         key={card.user + `${i}`}
                         className="w-full flex-shrink-0 "
@@ -118,6 +97,7 @@ const Explore: FC<ExploreProps> = ({
             </div>
           </Tab>
           <Tab title="Following">
+
             <div  className="mt-4  overflow-y-scroll">
               <div style={{height: "calc(100vh - 20rem)"}} className="flex flex-col items-center gap-4 overflow-scroll px-4">
                 {eContent.map((card, i) => (
@@ -129,6 +109,7 @@ const Explore: FC<ExploreProps> = ({
                       <Card {...card} />
                     </div>
                   </>
+
                 ))}
               </div>
             </div>
@@ -141,10 +122,11 @@ const Explore: FC<ExploreProps> = ({
 
 export default Explore;
 
-export const getStaticProps: GetStaticProps<ExploreProps> = () => {
+export const getStaticProps: GetStaticProps<ExploreProps> = async () => {
+  const exploreContents = await getExplorableContent();
   return {
     props: {
-      exploreContents: [],
+      exploreContents,
       trendingContents: [],
       followingContents: [],
       menu: [
@@ -188,3 +170,4 @@ export const getStaticProps: GetStaticProps<ExploreProps> = () => {
     },
   };
 };
+

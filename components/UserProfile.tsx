@@ -9,17 +9,22 @@ import { RxCross2 } from "react-icons/rx";
 type Props = {
   userProfile: any;
   userById: any;
+  handleFollow: () => void;
+  followed: boolean;
 };
 
-const UserProfile = ({ userProfile, userById }: Props) => {
+const UserProfile = ({
+  userProfile,
+  userById,
+  handleFollow,
+  followed,
+}: Props) => {
   const [showEditForm, setShowEditForm] = useState(false);
   const [userId, setUserId] = useState<any>();
   const [isOwnProfile, setIsOwnProfile] = useState(false);
   const [userBio, setUserBio] = useState<string>(
     userById && userById[0].bio ? userById[0].bio : "Edit Your Bio"
   );
-
-  console.log(userById);
 
   const editProfile = async (e: any) => {
     e.preventDefault();
@@ -45,8 +50,9 @@ const UserProfile = ({ userProfile, userById }: Props) => {
         {!isOwnProfile && (
           <button
             className={`rounded-full bg-[#303933] px-8 py-1.5 text-sm font-semibold text-white ${open_sans.className}`}
+            onClick={handleFollow}
           >
-            Follow
+            {followed ? "following" : "follow"}
           </button>
         )}
       </div>

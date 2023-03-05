@@ -64,7 +64,7 @@ function UserPage({}: Props) {
     const { data, error } = await supabase
       .from("posts")
       .select("*")
-      .eq("posted_by", userProfile.id);
+      .eq("posted_by", userId);
 
     setMyPosts(data);
     console.log(data, "my posts");
@@ -92,7 +92,7 @@ function UserPage({}: Props) {
       .insert([{ user_id: userId, followed_by: userProfile.id }]);
 
     if (error) console.log(error, "ahdnelfollwo error");
-    else setFollowed((prev) => !prev);
+    setFollowed(true);
   };
 
   return (
@@ -112,7 +112,12 @@ function UserPage({}: Props) {
             src={userById && userById[0].user_image}
             alt=""
           />
-          <UserProfile userProfile={userProfile} userById={userById} />
+          <UserProfile
+            handleFollow={handleFollow}
+            userProfile={userProfile}
+            userById={userById}
+            followed={followed}
+          />
         </div>
         <div className="flex gap-4">
           <button

@@ -1,14 +1,16 @@
+import AudioService from "@/services/audio.service";
 import type { TUser } from "@/types/TUser";
 import { create } from "zustand";
 
 type User = TUser;
 
-type StoreValues = {
+export type StoreValues = {
   userId: string;
   email: string;
   password: string;
   username: string;
   userProfile: User;
+  audioService: InstanceType<typeof AudioService>;
   setUserId: (id: string) => void;
   setEmail: (email: string) => void;
   setPassword: (password: string) => void;
@@ -36,7 +38,7 @@ const useStore = create<StoreValues>((set, get) => ({
     user_image: "",
     bio: "",
   },
-
+  audioService: new AudioService(),
   setEmail: (email: string) => {
     set({
       email: email,
