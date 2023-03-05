@@ -4,6 +4,7 @@ import { Dialog } from "@headlessui/react";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import Audio from "./Audio";
+import ModalImage from "./ModalImage";
 
 type Props = {
   isOpen: any;
@@ -17,7 +18,11 @@ function AddBookModal({ isOpen, setIsOpen }: Props) {
     genre: "all",
     audio: "",
     part: "",
+    image: "",
   });
+
+  const [img_url, setEventImageUrl] = useState("");
+
   const [audioUrl, setAudioUrl] = useState("");
   const handleFormData = (e: any) => {
     setFormData({
@@ -42,6 +47,7 @@ function AddBookModal({ isOpen, setIsOpen }: Props) {
         description: formData.description,
         posted_by: userProfile?.id,
         audio: audioUrl,
+        cover: img_url,
       },
     ]);
     if (data) {
@@ -137,6 +143,14 @@ function AddBookModal({ isOpen, setIsOpen }: Props) {
                   }}
                 />
               </label>
+            </div>
+            <div className="flex w-full items-center justify-center border-2 border-dashed border-[#Af7A0f] p-4">
+              <ModalImage
+                url={img_url}
+                onUpload={(url) => {
+                  setEventImageUrl(url);
+                }}
+              />
             </div>
             <button
               type="submit"

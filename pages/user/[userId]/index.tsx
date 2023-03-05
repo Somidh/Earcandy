@@ -21,6 +21,7 @@ function UserPage({}: Props) {
   const [myFollowing, setMyFollowing] = useState<any>([]);
   const [myFollowers, setMyFollowers] = useState<any>([]);
   const [myPosts, setMyPosts] = useState<any>([]);
+  const [isOwnProfile, setIsOwnProfile] = useState(false);
 
   const { userProfile } = useStore((state: any) => {
     return {
@@ -85,6 +86,11 @@ function UserPage({}: Props) {
     })();
   }, [userProfile.id]);
 
+  useEffect(() => {
+    const { userId } = router.query;
+    if (userId === userProfile.id) setIsOwnProfile(true);
+  }, [userProfile]);
+
   const handleFollow = async () => {
     if (followed) return;
     const { data, error } = await supabase
@@ -136,12 +142,14 @@ function UserPage({}: Props) {
           <Link href="/">5 posts</Link>
           <Link href={`/user/${userProfile.id}/likes`}>8 Liked post</Link>
         </div>
-        <button
-          className="rounded-full bg-[#303933] px-4 py-1 text-white"
-          onClick={() => setIsOpen(true)}
-        >
-          + Add
-        </button>
+        {isOwnProfile && (
+          <button
+            className="rounded-full bg-[#303933] px-4 py-1 text-white"
+            onClick={() => setIsOpen(true)}
+          >
+            + Add
+          </button>
+        )}
       </div>
       <BookContainer myPosts={myPosts} />
     </main>
