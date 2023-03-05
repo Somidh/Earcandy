@@ -1,3 +1,4 @@
+import { open_sans } from "@/public/assets/fonts/font";
 import editUser from "@/server/lib/editUser";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -44,12 +45,12 @@ const UserProfile = ({
 
   return (
     <div>
-      <div className="flex items-center gap-6 font-semibold text-[#303933]">
-        <p>{userById && userById[0].full_name}</p>
+      <div className="flex items-center gap-4 font-semibold text-[#303933]">
+        <p className={`text-xl font-bold capitalize ${open_sans.className}`}>{userById && userById[0].full_name}</p>
         {!isOwnProfile && (
           <button
+            className={`rounded-full bg-[#303933] px-8 py-1.5 text-sm font-semibold text-white ${open_sans.className}`}
             onClick={handleFollow}
-            className="rounded-full bg-[#303933] px-2 py-[.1rem] text-sm text-white"
           >
             {followed ? "following" : "follow"}
           </button>

@@ -105,7 +105,7 @@ function UserPage({}: Props) {
 
   return (
     // remove margin top later
-    <main className="mx-auto mt-[3rem] max-w-6xl">
+    <main style={{height: "calc(100vh - 160px)"}} className="mx-auto mt-[3rem] max-w-6xl">
       <AddBookModal isOpen={isOpen} setIsOpen={setIsOpen} />
       <FollowersModal
         isOpenFollowerlist={isOpenFollwerList}

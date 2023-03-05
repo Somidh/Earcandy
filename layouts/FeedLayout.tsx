@@ -50,13 +50,13 @@ const FeedLayout: FC<FeedLayoutProps> = ({
   ...props
 }) => {
   return (
-    <section className="h-[calc(100vh - 128px)]" {...props}>
+    <section className="h-[calc(100vh - 112px)]" {...props}>
       {/* <div className="mx-auto max-w-7xl"></div> */}
       <SafeLayout className="flex items-start justify-between">
         {/* menu */}
         <div
           className="flex w-80 flex-col justify-between py-8 lg:col-span-4"
-          style={{ height: "calc(100vh - 128px)" }}
+          style={{ height: "calc(100vh - 112px)" }}
         >
           {/* <Menu menuItemList={menu} /> */}
           <div className="">
