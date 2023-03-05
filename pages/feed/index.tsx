@@ -100,7 +100,7 @@ const Explore: FC<ExploreProps> = ({
 
             <div  className="mt-4  overflow-y-scroll">
               <div style={{height: "calc(100vh - 20rem)"}} className="flex flex-col items-center gap-4 overflow-scroll px-4">
-                {eContent.map((card, i) => (
+                {exploreContents.map((card, i) => (
                   <>
                     <div
                       key={card.user + `${i}`}
