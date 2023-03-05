@@ -3,6 +3,7 @@ import useStore from "@/store/store";
 import { Dialog } from "@headlessui/react";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { BsMusicNote } from "react-icons/bs";
 import Audio from "./Audio";
 import ModalImage from "./ModalImage";
 
@@ -125,16 +126,9 @@ function AddBookModal({ isOpen, setIsOpen }: Props) {
               id=""
               onChange={(e) => handleFormData(e)}
             />
-            <div className="flex h-[8rem] cursor-pointer flex-col items-center justify-center rounded-md border border-dashed border-[#8B9A91]">
-              <label className="flex h-full w-full flex-col items-center justify-center text-[#303933]">
-                <svg
-                  className="h-8 w-8"
-                  fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
-                </svg>
+            <div className="flex h-[2.5rem] cursor-pointer flex-col items-center justify-center rounded-md border border-dashed border-[#8B9A91]">
+              <label className="flex h-full w-full items-center justify-center text-[#303933]">
+                <BsMusicNote />
                 <span className="">Add Audio</span>
                 <Audio
                   url={audioUrl}
@@ -144,14 +138,12 @@ function AddBookModal({ isOpen, setIsOpen }: Props) {
                 />
               </label>
             </div>
-            <div className="flex w-full items-center justify-center border-2 border-dashed border-[#Af7A0f] p-4">
-              <ModalImage
-                url={img_url}
-                onUpload={(url) => {
-                  setEventImageUrl(url);
-                }}
-              />
-            </div>
+            <ModalImage
+              url={img_url}
+              onUpload={(url) => {
+                setEventImageUrl(url);
+              }}
+            />
             <button
               type="submit"
               className="w-full rounded-sm border-none bg-[#C6DBCE] p-2"
