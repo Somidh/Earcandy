@@ -55,7 +55,7 @@ function Creator({ username, id, user_image }: any) {
   return (
     <div className="min-w-[16rem]">
       <Link
-        href={`/users/${id}`}
+        href={`/user/${id}`}
         className="rounded-card-accent flex items-center gap-x-4"
       >
         {/* profile */}
