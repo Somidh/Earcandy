@@ -12,7 +12,7 @@ const BookCard: FC<Props> = ({ post }) => {
         <img
           src={`https://pvvbzesrxmiuksjjhqac.supabase.co/storage/v1/object/public/images/${post.cover}`}
           alt={post.title}
-          className="object-cover"
+          className="h-full w-full object-cover"
         />
       </div>
       {/* <div className="h-[8rem] w-[13rem] bg-[#303933]"></div> */}
