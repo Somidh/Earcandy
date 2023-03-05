@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import { FC, useEffect } from "react";
 
 import Card from "@/components/feeds/Card";
 import Tabs from "@/components/utils/Tabs";
@@ -10,6 +10,8 @@ import type { TCard } from "@/types/TCard";
 import type { TMenuItem } from "@/types/TMenuItem";
 import type { TUser } from "@/types/TUser";
 import type { GetStaticProps } from "next";
+import supabase from "@/server/supabase";
+import useStore from "@/store/store";
 
 type ExploreProps = {
   exploreContents: TCard[];
@@ -26,6 +28,32 @@ const Explore: FC<ExploreProps> = ({
   menu,
   creatorsList,
 }) => {
+
+  const { userProfile } = useStore((state) => {
+    return {
+      userProfile: state.userProfile,
+    };
+  });
+
+  const getFollowingPosts = async () => {
+    const { data, error } = await supabase
+      .from("follow")
+      .select("users(id), posts(*)")
+      .eq("posts.posted_by", "users.id");
+
+    if (data) {
+      console.log(data, "my following posts data");
+    }
+
+    if (error) console.log(error, "error in get my follwing posts");
+  };
+
+  useEffect(() => {
+    if (userProfile.id) {
+      getFollowingPosts();
+    }
+  }, []);
+
   return (
     <main>
       <FeedLayout
@@ -138,3 +166,4 @@ export const getStaticProps: GetStaticProps<ExploreProps> = async () => {
     },
   };
 };
+
