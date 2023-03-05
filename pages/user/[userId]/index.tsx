@@ -124,14 +124,15 @@ function UserPage({}: Props) {
             className="text-[#303933]"
             onClick={() => setIsOpenFollwerList(true)}
           >
-            <span className="mx-1 font-semibold">12K</span>
+            <span className="mx-1 font-semibold">{myFollowers?.length}</span>
             Followers
           </button>
           <button
             className="text-[#303933]"
             onClick={() => setIsOpenFollwerList(true)}
           >
-            <span className="mx-1 font-semibold">12</span> Following
+            <span className="mx-1 font-semibold">{myFollowing?.length}</span>
+            Following
           </button>
         </div>
       </div>
