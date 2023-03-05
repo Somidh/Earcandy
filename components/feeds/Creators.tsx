@@ -1,41 +1,74 @@
-import { noto_serif, open_sans } from "@/public/assets/fonts/font";
-import type { TUser } from "@/types/TUser";
+import { open_sans } from "@/public/assets/fonts/font";
+import supabase from "@/server/supabase";
 import Link from "next/link";
-import type { FC } from "react";
+import { FC, useEffect, useState } from "react";
 
 type CreatorsProps = {
-  creatorList: TUser[];
+  // creatorList: TUser[];
 };
 
-const Creators: FC<CreatorsProps> = ({ creatorList }) => {
+const Creators: FC<CreatorsProps> = ({}) => {
+  const [creatorList, setCreatorList] = useState<any>([]);
+
+  const getCreators = async () => {
+    const { data, error } = await supabase
+      .from("users")
+      .select("username, id, user_image");
+
+    if (data) {
+      console.log(data);
+      setCreatorList(data);
+    }
+
+    if (error) console.log(error, "error in getCreators");
+  };
+
+  useEffect(() => {
+    getCreators();
+  }, []);
+
   return (
-    <>
-      <h2 className={`mb-4 px-2 font-noto text-2xl text-[#27312B] font-semibold`}>
+    <div className="">
+      <h2
+        className={`mb-4 px-2 font-noto text-2xl font-semibold text-[#27312B]`}
+      >
         Authors
       </h2>
       <div className="flex flex-col gap-2">
-        {creatorList.map((creator) => (
+        {creatorList?.map((creator: any) => (
           <>
-            <Creator {...creator} />
+            <Creator
+              username={creator?.username}
+              id={creator?.id}
+              user_image={creator?.user_image}
+            />
           </>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 
 export default Creators;
 
-function Creator({ username, id }: TUser) {
+function Creator({ username, id, user_image }: any) {
   return (
-    <Link
-      href={`/users/${id}`}
-      className="rounded-card-accent flex items-center gap-x-4"
-    >
-      {/* profile */}
-      <div className="h-10 w-10 rounded-full bg-slate-800"></div>
-      {/* user */}
-      <h3 className={`font-semibold text-[#27312B]  ${open_sans.className}`}>{username}</h3>
-    </Link>
+    <div className="min-w-[16rem]">
+      <Link
+        href={`/users/${id}`}
+        className="rounded-card-accent flex items-center gap-x-4"
+      >
+        {/* profile */}
+        <img
+          src={user_image}
+          alt="user image"
+          className="h-10 w-10 rounded-full"
+        />
+        {/* user */}
+        <h3 className={`font-semibold text-[#27312B]  ${open_sans.className}`}>
+          {username}
+        </h3>
+      </Link>
+    </div>
   );
 }
