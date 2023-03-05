@@ -1,31 +1,15 @@
 import BookCard from "./BookCard";
 
-type Props = {};
+type Props = {
+  myPosts: any;
+};
 
-export default function BookContainer({}: Props) {
+export default function BookContainer({ myPosts }: Props) {
   return (
     <div className="flex flex-wrap gap-5">
-      <BookCard />
-      <BookCard />
-      <BookCard />
-      <BookCard />
-      <BookCard />
-      <BookCard />
-      <BookCard />
-      <BookCard />
-      <BookCard />
-      <BookCard />
-      <BookCard />
-      <BookCard />
-      <BookCard />
-      <BookCard />
-      <BookCard />
-      <BookCard />
-      <BookCard />
-      <BookCard />
-      <BookCard />
-      <BookCard />
-      <BookCard />
+      {myPosts?.map((post: any, i: number) => (
+        <BookCard post={post} key={i} />
+      ))}
     </div>
   );
 }

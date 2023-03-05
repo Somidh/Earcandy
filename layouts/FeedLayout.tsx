@@ -7,11 +7,43 @@ import type { TUser } from "@/types/TUser";
 import clsx from "clsx";
 import type { ComponentProps, FC } from "react";
 import SafeLayout from "./SafeLayout";
+import Sidebar from "@/components/Sidebar";
+import cooking_img from "public/assets/images/cooking_book_img.png";
+import headphone_img from "public/assets/images/headphone_img.png";
+import reading_img from "public/assets/images/reading_img.png";
+import unicorn_img from "public/assets/images/unicorn_img.png";
 
 type FeedLayoutProps = ComponentProps<"section"> & {
   menu: TMenuItem[];
   creatorList: TUser[];
 };
+
+const booksCategories = [
+  {
+    name: "Audio books",
+    count: "320 book",
+    img: headphone_img,
+    bgColor: "#8A84E2",
+  },
+  {
+    name: "Children books",
+    count: "300 book",
+    img: reading_img,
+    bgColor: "#f0b67f",
+  },
+  {
+    name: "Fantasy books ",
+    count: "450 book",
+    img: unicorn_img,
+    bgColor: "#87bba2",
+  },
+  {
+    name: "Cooking books",
+    count: "80 book",
+    img: cooking_img,
+    bgColor: "#acdde7",
+  },
+];
 
 const FeedLayout: FC<FeedLayoutProps> = ({
   className,
@@ -21,24 +53,39 @@ const FeedLayout: FC<FeedLayoutProps> = ({
   ...props
 }) => {
   return (
-    <section className={clsx("h-full ", className)} {...props}>
-      <div className="mx-auto max-w-7xl">
-        <Navbar />
-      </div>
-      <SafeLayout className="grid grid-cols-1 gap-2 lg:grid-cols-16">
+    <section className="h-[calc(100vh - 128px)]" {...props}>
+      {/* <div className="mx-auto max-w-7xl"></div> */}
+      <SafeLayout className="flex items-start justify-between">
         {/* menu */}
-        <div className="flex h-screen w-80 flex-col justify-between px-2 pb-4 lg:col-span-4">
-          <Menu menuItemList={menu} />
+        <div
+          className="flex w-80 flex-col justify-between py-8 lg:col-span-4"
+          style={{ height: "calc(100vh - 128px)" }}
+        >
+          {/* <Menu menuItemList={menu} /> */}
+          <div className="">
+            {booksCategories.map((category, idx) => {
+              const { name, count, img, bgColor } = category;
+              return (
+                <Sidebar
+                  key={idx}
+                  name={name}
+                  count={count}
+                  img={img.src}
+                  bgColor={bgColor}
+                />
+              );
+            })}
+          </div>
           <EarCandy />
         </div>
         {/* body */}
-        <div className="flex h-full flex-shrink-0 lg:col-span-full lg:col-start-5">
+        <div className="w-[45em] ">{children}</div>
+        {/* <div className="flex h-full flex-shrink-0 lg:col-span-full lg:col-start-5"> */}
           {/* explore */}
-          <div className="flex-auto">{children}</div>
           {/* user suggestion */}
-          <div className="mt-12 hidden w-64 p-4 lg:block">
-            <Creators creatorList={creatorList} />
-          </div>
+        {/* </div> */}
+        <div className="pt-8 hidden w-64 p-4 lg:block">
+          <Creators creatorList={creatorList} />
         </div>
       </SafeLayout>
     </section>

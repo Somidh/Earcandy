@@ -1,7 +1,8 @@
 "use client";
 
 import supabase from "@/server/supabase";
-import { FC, useEffect, useState } from "react";
+import type { FC} from "react";
+import { useEffect, useState } from "react";
 
 type AudioProps = {
   url: string;
@@ -14,7 +15,6 @@ const Audio: FC<AudioProps> = ({ url, onUpload }) => {
 
   useEffect(() => {
     if (url) downloadAudio(url);
-    console.log(url, "url");
   }, [url]);
 
   async function downloadAudio(path: any) {
@@ -63,7 +63,7 @@ const Audio: FC<AudioProps> = ({ url, onUpload }) => {
   return (
     <div>
       {audioUrl ? (
-        <p>audio</p>
+        <p>Audio Uploaded</p>
       ) : uploading ? (
         "Uploading ..."
       ) : (

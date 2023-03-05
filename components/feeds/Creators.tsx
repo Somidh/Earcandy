@@ -1,3 +1,4 @@
+import { noto_serif, open_sans } from "@/public/assets/fonts/font";
 import type { TUser } from "@/types/TUser";
 import Link from "next/link";
 import type { FC } from "react";
@@ -9,7 +10,7 @@ type CreatorsProps = {
 const Creators: FC<CreatorsProps> = ({ creatorList }) => {
   return (
     <>
-      <h2 className="mb-4 mt-6 px-2 font-noto text-2xl font-semibold">
+      <h2 className={`mb-4 px-2 font-noto text-2xl text-[#27312B] font-semibold`}>
         Authors
       </h2>
       <div className="flex flex-col gap-2">
@@ -34,7 +35,7 @@ function Creator({ username, id }: TUser) {
       {/* profile */}
       <div className="h-10 w-10 rounded-full bg-slate-800"></div>
       {/* user */}
-      <h3 className="font-medium">{username}</h3>
+      <h3 className={`font-semibold text-[#27312B]  ${open_sans.className}`}>{username}</h3>
     </Link>
   );
 }

@@ -44,8 +44,7 @@ const Home: FC = () => {
   ];
 
   return (
-    <div className="h-screen px-40">
-      <Navbar />
+    <div style={{ height: "calc(100vh - 128px)" }}>
 
       <div className="relative mb-20  w-full text-center">
         <Image

@@ -1,3 +1,4 @@
+import Navbar from "@/components/Navbar";
 import AppWrapper from "@/server/wrapper/AppWrapper";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 import type { AppProps } from "next/app";
@@ -7,7 +8,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <UserProvider>
       <AppWrapper>
-        <Component {...pageProps} />
+        <div className="px-40 bg-primary">
+          <Navbar />
+          <Component {...pageProps} />
+        </div>
       </AppWrapper>
     </UserProvider>
   );

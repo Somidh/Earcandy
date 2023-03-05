@@ -6,7 +6,7 @@ type SafeLayoutProps = ComponentProps<"div">;
 const SafeLayout: FC<SafeLayoutProps> = ({ className, ...props }) => {
   return (
     <section className="">
-      <div className={clsx(`mx-auto max-w-7xl`, className)} {...props} />
+      <div className={clsx(``, className)} {...props} />
     </section>
   );
 };
