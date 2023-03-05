@@ -44,12 +44,12 @@ const ModalImage: FC<ModalImageProps> = ({ url, onUpload }) => {
       const fileName = `${Math.random()}.${fileExt}`;
       const filePath = `${fileName}`;
 
-      let { error: uploadError } = await supabase.storage
+      const { error: uploadError } = await supabase.storage
         .from("images")
         .upload(filePath, file);
 
       if (uploadError) {
-        throw uploadError;
+        console.log(uploadError);
       }
       onUpload(filePath);
     } catch (error: any) {
