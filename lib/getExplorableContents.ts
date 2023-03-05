@@ -4,7 +4,7 @@ import type { TCard } from "@/types/TCard";
 export default async function getExplorableContent(): Promise<TCard[]> {
   const { data, error } = await supabase
     .from("posts")
-    .select("id,title,description,duration,audio,genre,users(full_name)")
+    .select("id,title,description,duration,audio,genre,cover,users(full_name)")
     .limit(10);
   if (error) {
     console.log(error);
@@ -21,6 +21,7 @@ export default async function getExplorableContent(): Promise<TCard[]> {
         user: (curr.users as { full_name: unknown }).full_name as string,
         contentId: curr.id,
         audioLink: `${audioBaseUrl}/${curr.audio}`,
+        image: `https://pvvbzesrxmiuksjjhqac.supabase.co/storage/v1/object/public/images/${curr.cover}`,
       };
       acc.push(card);
       return acc;

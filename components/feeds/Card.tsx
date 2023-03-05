@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable react-hooks/exhaustive-deps */
 import addToFavourites from "@/lib/addToFavourites";
 import { open_sans } from "@/public/assets/fonts/font";
@@ -14,7 +15,14 @@ import { useState } from "react";
 import ClockIcon from "../icons/ClockIcon";
 
 type CardProps = TCard;
-const Card: FC<CardProps> = ({ duration, genre, title, user, audioLink }) => {
+const Card: FC<CardProps> = ({
+  duration,
+  genre,
+  title,
+  user,
+  audioLink,
+  image,
+}) => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [isLiked, setIsLiked] = useState<boolean>(false);
 
@@ -82,7 +90,13 @@ const Card: FC<CardProps> = ({ duration, genre, title, user, audioLink }) => {
       </div>
 
       {/* image */}
-      <div className="min-h-full w-32 bg-slate-600 "></div>
+      <div className="h-36 w-32 bg-slate-600">
+        <img
+          className="h-full w-full object-cover object-center"
+          src={image}
+          alt={user}
+        />
+      </div>
       {/* info */}
       <div className="max-w-sm space-y-2 p-4">
         <div className="-space-y-1">
