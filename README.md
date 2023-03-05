@@ -35,9 +35,10 @@ An audiobook platform where users can create and share their own audiobooks. Thi
 
 |||
 |:----------------------------------------:|:-----------------------------------------:|
-| ||
-| | |
-| | 
+|![Screenshot from 2023-03-05 15-47-01](https://user-images.githubusercontent.com/95094057/222954538-906a68d7-ac0b-4065-9756-c66efd0f42cb.png)
+| ![Screenshot from 2023-03-05 15-47-08](https://user-images.githubusercontent.com/95094057/222954520-415817a0-0ce3-4715-abbd-bcb15e6d5a33.png)
+|![Screenshot from 2023-03-05 15-49-54](https://user-images.githubusercontent.com/95094057/222954623-34a7afcc-1587-4c14-b1aa-4a2591a8c8da.png)
+
 
 ## 🍎Inspiration
 With our user-friendly interface, users can easily upload and manage their content in parts, and connect with others through social media features such as following, liking, and commenting. Our platform provides various categories to choose from, making it simple for listeners to discover audiobooks that interest them.
