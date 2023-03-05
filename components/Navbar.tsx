@@ -37,7 +37,7 @@ const Navbar: FC = () => {
   ];
 
   return (
-    <div className="flex items-center justify-between py-10">
+    <div className="flex items-center justify-between py-8 ">
       <Link
         href={"/"}
         className={`text-[32px] font-bold ${playfair_display.className}`}

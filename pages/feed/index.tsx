@@ -97,11 +97,11 @@ const Explore: FC<ExploreProps> = ({
               </div>
               {/* will fix explore scrolling */}
               <div className="h-fit flex-auto">
-                <div className="mb-8 h-[calc(100vh-21rem)] space-y-4 py-4">
+                <div className=" h-full space-y-4 py-4">
                   <h1 className={`title px-4 ${noto_serif.className}`}>
                     Explore
                   </h1>
-                  <div className="flex max-h-full flex-col items-center gap-4 overflow-auto px-4 ">
+                  <div style={{height: "calc(100vh - 490px)"}} className="flex flex-col items-center gap-4 overflow-y-scroll px-4 ">
                     {/* exploreContents */}
 
                     {eContent.map((card, i) => (
@@ -118,8 +118,8 @@ const Explore: FC<ExploreProps> = ({
             </div>
           </Tab>
           <Tab title="Following">
-            <div className="mt-4 h-[calc(100vh-4.4rem)] overflow-auto">
-              <div className="flex max-h-full flex-col items-center gap-4 overflow-auto px-4">
+            <div  className="mt-4  overflow-y-scroll">
+              <div style={{height: "calc(100vh - 20rem)"}} className="flex flex-col items-center gap-4 overflow-scroll px-4">
                 {eContent.map((card, i) => (
                   <>
                     <div

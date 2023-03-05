@@ -31,12 +31,10 @@ const NavbarButton: FC = () => {
       userProfile: state.userProfile,
     };
   });
-  const user = true;
 
   return (
     <div>
-      {userProfile.email ? (
-        // <Link href={`/user/${userProfile.id}}`}>
+      {userProfile.email  ? (
         <button
           onClick={handleClick}
           className="flex items-center gap-2 rounded-md bg-[#b7d3c1] px-4 py-2"
@@ -48,13 +46,12 @@ const NavbarButton: FC = () => {
           />
           <span
             id="basic-button"
-            className={`text-sm font-bold uppercase text-skin-base ${open_sans.className}`}
+            className={`text-sm font-bold capitalize text-skin-base ${open_sans.className}`}
           >
             {userProfile.full_name}
           </span>
         </button>
       ) : (
-        // </Link>
         <button
           onClick={handleLogin}
           className={`rounded-md bg-btn px-8 py-2 font-bold uppercase text-[#F4F1E7] ${open_sans.className}`}
