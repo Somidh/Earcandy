@@ -89,6 +89,7 @@ function AddBookModal({ isOpen, setIsOpen }: Props) {
               className="w-full rounded-sm border-none bg-[#C6DBCE] p-2"
               type="text"
               name="title"
+              placeholder="Title"
               id=""
               onChange={(e) => handleFormData(e)}
             />
@@ -97,6 +98,7 @@ function AddBookModal({ isOpen, setIsOpen }: Props) {
                 className="w-[60%] rounded-sm border-none bg-[#C6DBCE] p-2"
                 type="text"
                 name="genre"
+                placeholder="Genre"
                 id=""
                 onChange={(e) => handleFormData(e)}
               />
@@ -104,6 +106,7 @@ function AddBookModal({ isOpen, setIsOpen }: Props) {
                 className="w-[37%] rounded-sm border-none bg-[#C6DBCE] p-2"
                 type="text"
                 name="description"
+                placeholder="Description"
                 id=""
                 onChange={(e) => handleFormData(e)}
               />
@@ -112,11 +115,12 @@ function AddBookModal({ isOpen, setIsOpen }: Props) {
               className="w-[37%] rounded-sm border-none bg-[#C6DBCE] p-2"
               type="text"
               name="part"
+              placeholder="Part"
               id=""
               onChange={(e) => handleFormData(e)}
             />
             <div className="flex h-[8rem] cursor-pointer flex-col items-center justify-center rounded-md border border-dashed border-[#8B9A91]">
-              <label className="flex flex-col w-full h-full items-center justify-center text-[#303933]">
+              <label className="flex h-full w-full flex-col items-center justify-center text-[#303933]">
                 <svg
                   className="h-8 w-8"
                   fill="currentColor"
