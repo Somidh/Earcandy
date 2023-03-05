@@ -64,7 +64,7 @@ function UserPage({}: Props) {
     const { data, error } = await supabase
       .from("posts")
       .select("*")
-      .eq("posted_by", userProfile.id);
+      .eq("posted_by", userId);
 
     setMyPosts(data);
     console.log(data, "my posts");
